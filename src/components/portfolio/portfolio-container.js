@@ -5,7 +5,10 @@ import PortfolioItem from "./portfolio-item";
 export default class PortfolioContainer extends Component {
   // State
   // Lifecycle hooks
-
+  constructor() {
+    super();
+    console.log("Portfolio containter has rendered");
+  }
   render() {
     return (
       <div>
