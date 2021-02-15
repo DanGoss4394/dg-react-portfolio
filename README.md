@@ -1,5 +1,6 @@
-# React/Redux/Router Starter Project
+# React Portfolio
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
+> This is a portfolio that i created during my course with Bottega
 
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+## Docs
+- [React Docs](https://reactjs.org/docs/getting-started.html)
