@@ -2,3 +2,8 @@ body {
   margin: 0px;
   font-family: "Titillium Web", sans-serif;
 }
+
+.contrainer {
+  display: grid;
+  grid-template-columns: 1fr;
+}
