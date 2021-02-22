@@ -35,11 +35,12 @@ export default class Login extends Component {
       )
       .then((response) => {
         if (response.data.status === "created") {
-          console.log("You can log in...");
+          this.props.handleSuccessfulAuth();
         } else {
           this.setState({
             errorText: "Wrong Email or Password",
           });
+          this.props.handleUnSuccessfulAuth();
         }
       })
       .catch((error) => {
@@ -48,7 +49,6 @@ export default class Login extends Component {
         });
       });
 
-    console.log("Handle submit", this.state.email, this.state.password);
     event.preventDefault();
   }
 
