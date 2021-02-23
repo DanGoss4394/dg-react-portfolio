@@ -15,9 +15,18 @@ export default class PortfolioForm extends Component {
       logo_image: "",
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleSubmit(event) {
+    console.log("clicked");
+    event.preventDefault();
+  }
+
   handleChange(event) {
-    console.log("Handle Change", event);
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
   render() {
@@ -25,7 +34,7 @@ export default class PortfolioForm extends Component {
       <div>
         <h1>Form</h1>
 
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <input
               type="text"
