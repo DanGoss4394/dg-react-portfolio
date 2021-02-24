@@ -18,8 +18,20 @@ export default class PortfolioForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  buildForm() {
+    let formData = new FormData();
+
+    formData.append("protfolio_item[name]", this.state.name);
+    formData.append("protfolio_item[description]", this.state.description);
+    formData.append("protfolio_item[url]", this.state.url);
+    formData.append("protfolio_item[category]", this.state.category);
+    formData.append("protfolio_item[position]", this.state.position);
+    
+    return formData;
+  }
+
   handleSubmit(event) {
-    console.log("clicked");
+    this.buildForm();
     event.preventDefault();
   }
 
