@@ -16,7 +16,25 @@ export default class PortfolioManager extends Component {
       this
     );
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
+
+  handleDeleteClick(portfolioItem) {
+    console.log("handDeleteClick", portfolioItem);
+  }
+
+  handleSuccessfulFormSubmission(portfolioItem) {
+    this.setState({
+      portfolioItems: [portfolioItem].concat(this.state.portfolioItems),
+      // portfolioItems: [portfolioItem, ...this.state.portfolioItems]
+      // portfolioItems: [...this.state.portfolioItems, portfolioItem]
+    });
+  }
+
+  handleFormSubmissionError(error) {
+    console.log("handleFormSubmissionError error", error);
+  }
+
   getPortfolioItems() {
     axios
       .get(
@@ -46,18 +64,6 @@ export default class PortfolioManager extends Component {
     this.getPortfolioItems();
   }
 
-  handleSuccessfulFormSubmission(portfolioItem) {
-    this.setState({
-      portfolioItems: [portfolioItem].concat(this.state.portfolioItems),
-      // portfolioItems: [portfolioItem, ...this.state.portfolioItems]
-      // portfolioItems: [...this.state.portfolioItems, portfolioItem]
-    });
-  }
-
-  handleFormSubmissionError(error) {
-    console.log("handleFormSubmissionError error", error);
-  }
-
   render() {
     return (
       <div className="portfolio-manager-wrapper">
@@ -69,7 +75,10 @@ export default class PortfolioManager extends Component {
         </div>
 
         <div className="right-column">
-          <PortfolioSidebarList data={this.state.portfolioItems} />
+          <PortfolioSidebarList
+            handleDeleteClick={this.handleDeleteClick}
+            data={this.state.portfolioItems}
+          />
         </div>
       </div>
     );
