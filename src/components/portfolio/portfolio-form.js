@@ -19,6 +19,9 @@ export default class PortfolioForm extends Component {
       thumb_image: "",
       banner_image: "",
       logo: "",
+      editMode: false,
+      apiUrl: "https://dsgoose.devcamp.space/portfolio/portfolio_items",
+      apiAction: "post",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -110,6 +113,9 @@ export default class PortfolioForm extends Component {
         category: category || "eCommerce",
         position: position || "",
         url: url || "",
+        editMode: true,
+        apiUrl: `https://dsgoose.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiAction: "patch",
         // thumb_image: "",
         // banner_image: "",
         // logo: "",
@@ -118,12 +124,12 @@ export default class PortfolioForm extends Component {
   }
 
   handleSubmit(event) {
-    axios
-      .post(
-        "https://dsgoose.devcamp.space/portfolio/portfolio_items",
-        this.buildForm(),
-        { withCredentials: true }
-      )
+    axios({
+      method: this.state.apiAction,
+      url: this.state.apiUrl,
+      data: this.buildForm(),
+      withCredentials: true
+    })
       .then((response) => {
         this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
 
