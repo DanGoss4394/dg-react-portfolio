@@ -87,6 +87,36 @@ export default class PortfolioForm extends Component {
     return formData;
   }
 
+  componentDidUpdate() {
+    if (Object.keys(this.props.portfolioToEdit).length > 0) {
+      const {
+        id,
+        name,
+        description,
+        category,
+        position,
+        url,
+        thumb_image_url,
+        banner_image_url,
+        logo_url,
+      } = this.props.portfolioToEdit;
+
+      this.props.clearPortfolioToEdit();
+
+      this.setState({
+        id: id,
+        name: name || "",
+        description: description || "",
+        category: category || "eCommerce",
+        position: position || "",
+        url: url || "",
+        // thumb_image: "",
+        // banner_image: "",
+        // logo: "",
+      });
+    }
+  }
+
   handleSubmit(event) {
     axios
       .post(
@@ -178,7 +208,7 @@ export default class PortfolioForm extends Component {
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleThumbDrop()}
-            >
+          >
             <div className="dz-message">Thumbnail</div>
           </DropzoneComponent>
           <DropzoneComponent
@@ -186,7 +216,7 @@ export default class PortfolioForm extends Component {
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleBannerDrop()}
-            >
+          >
             <div className="dz-message">Banner</div>
           </DropzoneComponent>
           <DropzoneComponent
