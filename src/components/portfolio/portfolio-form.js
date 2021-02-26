@@ -4,7 +4,6 @@ import DropzoneComponent from "react-dropzone-component";
 
 import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
-import { relativeTimeThreshold } from "moment";
 
 export default class PortfolioForm extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ export default class PortfolioForm extends Component {
     this.handleThumbDrop = this.handleThumbDrop.bind(this);
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
-    this.deleteImage = this.deleteImage.bind(this)
+    this.deleteImage = this.deleteImage.bind(this);
 
     this.thumbRef = React.createRef();
     this.bannerRef = React.createRef();
@@ -38,7 +37,19 @@ export default class PortfolioForm extends Component {
   }
 
   deleteImage(imageType) {
-    console.log("deleteImage", imageType)
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/delete-portfolio-image/${this.state.id}?image_type=${imageType}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.setState({
+          [`${imageType}_url`]: ""
+        })
+      })
+      .catch((error) => {
+        console.log("deleteImage error", error);
+      });
   }
 
   handleThumbDrop() {
@@ -264,9 +275,7 @@ export default class PortfolioForm extends Component {
             <div className="portfolio-manager-image-wrapper">
               <img src={this.state.logo_url} />
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("logo")}>
-                  Remove file
-                </a>
+                <a onClick={() => this.deleteImage("logo")}>Remove file</a>
               </div>
             </div>
           ) : (
