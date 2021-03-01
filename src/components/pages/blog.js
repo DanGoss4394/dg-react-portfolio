@@ -12,6 +12,11 @@ export default class Blog extends Component {
     };
 
     this.getBlogItems = this.getBlogItems.bind(this);
+    this.activateInfiniteScroll();
+  }
+
+  activateInfiniteScroll() {
+    window.onscroll = () => {};
   }
 
   getBlogItems() {
