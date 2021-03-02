@@ -23,8 +23,15 @@ class BlogModal extends Component {
       },
     };
 
-    this.state = {};
+    this.handleSuccessfulFormSubmission = this.handleSuccessfulFormSubmission.bind(
+      this
+    );
   }
+
+  handleSuccessfulFormSubmission(blog) {
+    console.log("Blog", blog);
+  }
+
   render() {
     return (
       <ReactModal
@@ -34,7 +41,9 @@ class BlogModal extends Component {
         }}
         isOpen={this.props.modalIsOpen}
       >
-        <BlogForm />
+        <BlogForm
+          handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
+        />
       </ReactModal>
     );
   }
