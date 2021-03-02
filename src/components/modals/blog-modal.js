@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 
+ReactModal.setAppElement(".app-wrapper");
+
 class BlogModal extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +17,8 @@ class BlogModal extends Component {
         width: "800px",
       },
       overlay: {
-        backgroundColor: "rgba(1, 1, 1, 0.75)"
-      }
+        backgroundColor: "rgba(1, 1, 1, 0.75)",
+      },
     };
 
     this.state = {};
