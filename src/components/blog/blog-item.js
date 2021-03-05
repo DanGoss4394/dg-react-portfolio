@@ -22,7 +22,7 @@ const BlogItem = (props) => {
           lines={5}
           ellipsis={
             <span>
-              ... <Link to={`/b/${id}`}>Read More</Link>
+              ...<Link to={`/b/${id}`}>Read more</Link>
             </span>
           }
         >
